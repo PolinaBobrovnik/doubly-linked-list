@@ -1,9 +1,10 @@
 const Node = require('./node'); 
 
 class LinkedList { 
-constructor() {
-	    this.head = null;
-	    this.tail = null;
+constructor(data = null, prev = null, next = null) {
+	    this.data = data;
+        this.prev = prev;
+        this.next = next;
 	    this.count = 0;
 	    this.iterator = new Iterator(this);
 	} 
@@ -11,11 +12,11 @@ constructor() {
 append(data) {
 var newNode = this.createNewNode(data);
         if (this.isEmpty()) {
-            this.head = this.tail = newNode;
+            this.data = newNode;
             this.iterator.reset();
         } else {
-            this.tail.next = newNode;
-            this.tail = newNode;
+            this.prev = newNode;
+            this.next = newNode;
         }
         this.size += 1;
 
@@ -23,11 +24,11 @@ var newNode = this.createNewNode(data);
 } 
 
 head() {
-return this.head;
+return this.prev;
 } 
 
 tail() {
-return this.tail;
+return this.next;
 } 
 
 at(index) {
